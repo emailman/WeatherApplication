@@ -76,6 +76,18 @@ class MainActivity : AppCompatActivity() {
                 locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 
+    private fun getLocationWeatherDetails() {
+        if (Constants.isNetworkAvailable(this)) {
+            Toast.makeText(
+                this@MainActivity,
+                "Internet connection confirmed", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(
+                this@MainActivity,
+                "No Internet connection", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun showRationalDialogForPermissions() {
         AlertDialog.Builder(this)
             .setMessage("It Looks like you have turned off permissions required for this feature. It can be enabled under Application Settings")
@@ -109,12 +121,12 @@ class MainActivity : AppCompatActivity() {
 
         fusedLocationClient.requestLocationUpdates(
             locationRequest,
-            mLocationCallback,
+            locationCallback,
             Looper.myLooper()
         )
     }
 
-    private val mLocationCallback = object : LocationCallback() {
+    private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation: Location? = locationResult.lastLocation
             val latitude = mLastLocation?.latitude
@@ -122,6 +134,8 @@ class MainActivity : AppCompatActivity() {
 
             val longitude = mLastLocation?.longitude
             Log.i("Current Longitude", "$longitude")
+
+            getLocationWeatherDetails()
         }
     }
 }
