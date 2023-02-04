@@ -21,6 +21,12 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import edu.mailman.weatherapplication.models.WeatherResponse
+import edu.mailman.weatherapplication.network.WeatherService
+import retrofit.Callback
+import retrofit.GsonConverterFactory
+import retrofit.Response
+import retrofit.Retrofit
 
 
 class MainActivity : AppCompatActivity() {
@@ -76,11 +82,46 @@ class MainActivity : AppCompatActivity() {
                 locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 
-    private fun getLocationWeatherDetails() {
+    private fun getLocationWeatherDetails(latitude: Double, longitude: Double) {
         if (Constants.isNetworkAvailable(this)) {
-            Toast.makeText(
-                this@MainActivity,
-                "Internet connection confirmed", Toast.LENGTH_SHORT).show()
+            val retrofit = Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val service: WeatherService =
+                retrofit.create(WeatherService::class.java)
+
+            val listCall = service.getWeather(
+                latitude, longitude, Constants.UNITS, Constants.APP_ID
+            )
+
+            listCall.enqueue(object: Callback<WeatherResponse> {
+                override fun onResponse(
+                    response: Response<WeatherResponse>?,
+                    retrofit: Retrofit?) {
+                    if (response!!.isSuccess) {
+                        val weatherList = response.body()
+                        Log.i("Response Result", "$weatherList")
+                    } else {
+                        when (val rc = response.code()) {
+                            400 -> {
+                                Log.e("Error 400", "Bad Connection")
+                            }
+                            404 -> {
+                                Log.e("Error 404", "Not Found")
+                            } else -> {
+                                Log.e("Error", "generic error $rc")
+                            }
+                        }
+                    }
+                }
+
+                override fun onFailure(t: Throwable?) {
+                    Log.e("Error", t!!.message.toString())
+                }
+            })
+
         } else {
             Toast.makeText(
                 this@MainActivity,
@@ -129,13 +170,13 @@ class MainActivity : AppCompatActivity() {
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation: Location? = locationResult.lastLocation
-            val latitude = mLastLocation?.latitude
+            val latitude: Double? = mLastLocation?.latitude
             Log.i("Current Latitude", "$latitude")
 
-            val longitude = mLastLocation?.longitude
+            val longitude: Double? = mLastLocation?.longitude
             Log.i("Current Longitude", "$longitude")
 
-            getLocationWeatherDetails()
+            getLocationWeatherDetails(latitude!!, longitude!!)
         }
     }
 }

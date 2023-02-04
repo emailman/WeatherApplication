@@ -6,6 +6,10 @@ import android.net.NetworkCapabilities
 import android.os.Build
 
 object Constants {
+    const val APP_ID = "f282e6810344a266faf4e7311d63359d"
+    const val BASE_URL = "http://api.openweathermap.org/data/"
+    const val UNITS = "imperial"
+
     fun isNetworkAvailable(context: Context) : Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as
