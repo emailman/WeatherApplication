@@ -2,6 +2,7 @@ package edu.mailman.weatherapplication
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -21,6 +22,7 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import edu.mailman.weatherapplication.databinding.ActivityMainBinding
 import edu.mailman.weatherapplication.models.WeatherResponse
 import edu.mailman.weatherapplication.network.WeatherService
 import retrofit.Callback
@@ -30,11 +32,15 @@ import retrofit.Retrofit
 
 
 class MainActivity : AppCompatActivity() {
+    private var binding: ActivityMainBinding? = null
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    private var progressDialog: Dialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -96,12 +102,17 @@ class MainActivity : AppCompatActivity() {
                 latitude, longitude, Constants.UNITS, Constants.APP_ID
             )
 
+            showCustomProgressDialog()
+
             listCall.enqueue(object: Callback<WeatherResponse> {
                 override fun onResponse(
                     response: Response<WeatherResponse>?,
                     retrofit: Retrofit?) {
+
+                    hideProgressDialog()
                     if (response!!.isSuccess) {
                         val weatherList = response.body()
+                        setupUI(weatherList)
                         Log.i("Response Result", "$weatherList")
                     } else {
                         when (val rc = response.code()) {
@@ -119,6 +130,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onFailure(t: Throwable?) {
                     Log.e("Error", t!!.message.toString())
+                    hideProgressDialog()
                 }
             })
 
@@ -178,5 +190,35 @@ class MainActivity : AppCompatActivity() {
 
             getLocationWeatherDetails(latitude!!, longitude!!)
         }
+    }
+
+    private fun showCustomProgressDialog() {
+        progressDialog = Dialog(this)
+        progressDialog!!.setContentView(R.layout.dialog_custom_progress)
+        progressDialog!!.show()
+    }
+
+    private fun hideProgressDialog() {
+        if (progressDialog != null) {
+            progressDialog!!.dismiss()
+        }
+    }
+
+    private fun setupUI(weatherList: WeatherResponse) {
+        for (i in weatherList.weather.indices) {
+            Log.i("Weather Name", weatherList.weather.toString())
+            binding?.tvMain?.text = weatherList.weather[i].main
+            binding?.tvMainDescription?.text = weatherList.weather[i].description
+            binding?.tvTemp?.text = weatherList.main.temp.toString() +
+                    getUnit(application.resources.configuration.locales.toString())
+        }
+    }
+
+    private fun getUnit(value: String): String? {
+        var units = "°C"
+        if (value == "[en_US]") {
+            units = "°F"
+        }
+        return units
     }
 }
