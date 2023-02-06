@@ -14,6 +14,8 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.location.*
@@ -201,6 +203,22 @@ class MainActivity : AppCompatActivity() {
         progressDialog!!.show()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.action_refresh -> {
+                requestLocationData()
+                true
+            } else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
     private fun hideProgressDialog() {
         if (progressDialog != null) {
             progressDialog!!.dismiss()
@@ -226,6 +244,24 @@ class MainActivity : AppCompatActivity() {
             binding?.tvHumidity?.text = String.format("Humidity  %d%%", weatherList.main.humidity)
             binding?.tvMaxMin?.text = String.format("Max: %.0f%s / Min: %.0f%s",
                 weatherList.main.temp_max, unitDegrees, weatherList.main.temp_min, unitDegrees)
+
+            when (weatherList.weather[i].icon) {
+                "01d" -> binding?.ivMain?.setImageResource(R.drawable.sunny)
+                "02d" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "03d" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "04d" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "04n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "10d" -> binding?.ivMain?.setImageResource(R.drawable.rain)
+                "11d" -> binding?.ivMain?.setImageResource(R.drawable.storm)
+                "13d" -> binding?.ivMain?.setImageResource(R.drawable.snowflake)
+                "01n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "02n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "03n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "10n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "11n" -> binding?.ivMain?.setImageResource(R.drawable.rain)
+                "13n" -> binding?.ivMain?.setImageResource(R.drawable.snowflake)
+                "50n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+            }
         }
     }
 
