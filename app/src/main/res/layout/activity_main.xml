@@ -97,23 +97,23 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_temp"
+                        android:id="@+id/tv_humidity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:textColor="@color/primary_text_color"
                         android:textSize="@dimen/label_text_size"
                         android:textStyle="bold"
-                        tools:text="Degree" />
+                        tools:text="Humidity" />
 
                     <TextView
-                        android:id="@+id/tv_humidity"
+                        android:id="@+id/tv_humidity_units"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size"
-                        tools:text="per cent" />
+                        tools:text="percent" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -157,23 +157,24 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_min"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_temperature"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="end"
                         android:gravity="end"
                         android:textColor="@color/primary_text_color"
                         android:textSize="@dimen/label_text_size"
                         android:textStyle="bold"
-                        tools:text="Minimum" />
+                        tools:text="Current Temperature" />
 
                     <TextView
-                        android:id="@+id/tv_max"
+                        android:id="@+id/tv_max_min"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size"
-                        tools:text="Maximum" />
+                        tools:text="Max/Min" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -223,7 +224,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@string/miles_per_hour"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size" />
                 </LinearLayout>
@@ -316,7 +316,7 @@
 
                     <TextView
                         android:id="@+id/tv_sunrise_time"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size"
@@ -339,7 +339,7 @@
 
                     <TextView
                         android:id="@+id/tv_sunset_time"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size"

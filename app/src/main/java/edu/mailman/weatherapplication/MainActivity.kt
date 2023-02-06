@@ -29,6 +29,8 @@ import retrofit.Callback
 import retrofit.GsonConverterFactory
 import retrofit.Response
 import retrofit.Retrofit
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -143,7 +145,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun showRationalDialogForPermissions() {
         AlertDialog.Builder(this)
-            .setMessage("It Looks like you have turned off permissions required for this feature. It can be enabled under Application Settings")
+            .setMessage("It Looks like you have turned off permissions required for this feature. " +
+                    "It can be enabled under Application Settings")
             .setPositiveButton(
                 "GO TO SETTINGS"
             ) { _, _ ->
@@ -205,20 +208,42 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI(weatherList: WeatherResponse) {
+        Log.i("Weather Name", weatherList.toString())
+
         for (i in weatherList.weather.indices) {
-            Log.i("Weather Name", weatherList.weather.toString())
+            val countryCode = weatherList.sys.country
+            val unitDegrees = getTemperatureUnit(countryCode)
+
             binding?.tvMain?.text = weatherList.weather[i].main
             binding?.tvMainDescription?.text = weatherList.weather[i].description
-            binding?.tvTemp?.text = weatherList.main.temp.toString() +
-                    getUnit(application.resources.configuration.locales.toString())
+            binding?.tvTemperature?.text = String.format("Temperature  %.0f%s",
+                weatherList.main.temp, unitDegrees)
+            binding?.tvSunriseTime?.text = unixTime(weatherList.sys.sunrise)
+            binding?.tvSunsetTime?.text = unixTime(weatherList.sys.sunset)
+            binding?.tvSpeed?.text = String.format("Wind Speed  %.0f mph", weatherList.wind.speed)
+            binding?.tvName?.text = weatherList.name
+            binding?.tvCountry?.text = countryCode
+            binding?.tvHumidity?.text = String.format("Humidity  %d%%", weatherList.main.humidity)
+            binding?.tvMaxMin?.text = String.format("Max: %.0f%s / Min: %.0f%s",
+                weatherList.main.temp_max, unitDegrees, weatherList.main.temp_min, unitDegrees)
         }
     }
 
-    private fun getUnit(value: String): String? {
-        var units = "°C"
-        if (value == "[en_US]") {
-            units = "°F"
+    private fun getTemperatureUnit(countryCode: String): String {
+        return if (
+            countryCode == "US" ||
+            countryCode == "LR" ||
+            countryCode == "MM") {
+            "°F"
+        } else {
+            "°C"
         }
-        return units
+    }
+
+    private fun unixTime(timex: Long) : String? {
+        val date = Date(timex * 1000L)
+        val sdf = SimpleDateFormat("h:mm a", Locale.US)
+        sdf.timeZone = TimeZone.getDefault()
+        return sdf.format(date)
     }
 }
