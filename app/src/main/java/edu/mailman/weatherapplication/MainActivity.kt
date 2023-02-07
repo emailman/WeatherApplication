@@ -242,25 +242,30 @@ class MainActivity : AppCompatActivity() {
             binding?.tvName?.text = weatherList.name
             binding?.tvCountry?.text = countryCode
             binding?.tvHumidity?.text = String.format("Humidity  %d%%", weatherList.main.humidity)
-            binding?.tvMaxMin?.text = String.format("Max: %.0f%s / Min: %.0f%s",
-                weatherList.main.temp_max, unitDegrees, weatherList.main.temp_min, unitDegrees)
+            binding?.tvMaxMin?.text = String.format("Min: %.0f%s / Max: %.0f%s",
+                weatherList.main.temp_min, unitDegrees, weatherList.main.temp_max, unitDegrees)
 
             when (weatherList.weather[i].icon) {
                 "01d" -> binding?.ivMain?.setImageResource(R.drawable.sunny)
-                "02d" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
-                "03d" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
-                "04d" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
-                "04n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "02d" -> binding?.ivMain?.setImageResource(R.drawable.cloud_day)
+                "03d" -> binding?.ivMain?.setImageResource(R.drawable.clouds)
+                "04d" -> binding?.ivMain?.setImageResource(R.drawable.broken_clouds)
+                "09d" -> binding?.ivMain?.setImageResource(R.drawable.shower)
                 "10d" -> binding?.ivMain?.setImageResource(R.drawable.rain)
                 "11d" -> binding?.ivMain?.setImageResource(R.drawable.storm)
                 "13d" -> binding?.ivMain?.setImageResource(R.drawable.snowflake)
-                "01n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
-                "02n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
-                "03n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
-                "10n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
-                "11n" -> binding?.ivMain?.setImageResource(R.drawable.rain)
+                "50d" -> binding?.ivMain?.setImageResource(R.drawable.mist)
+
+
+                "01n" -> binding?.ivMain?.setImageResource(R.drawable.clear_night)
+                "02n" -> binding?.ivMain?.setImageResource(R.drawable.cloud_night)
+                "03n" -> binding?.ivMain?.setImageResource(R.drawable.clouds)
+                "04n" -> binding?.ivMain?.setImageResource(R.drawable.broken_clouds)
+                "9n" -> binding?.ivMain?.setImageResource(R.drawable.shower_night)
+                "10n" -> binding?.ivMain?.setImageResource(R.drawable.rain_night)
+                "11n" -> binding?.ivMain?.setImageResource(R.drawable.storm)
                 "13n" -> binding?.ivMain?.setImageResource(R.drawable.snowflake)
-                "50n" -> binding?.ivMain?.setImageResource(R.drawable.cloud)
+                "50n" -> binding?.ivMain?.setImageResource(R.drawable.mist)
             }
         }
     }
