@@ -26,7 +26,7 @@
             app:cardCornerRadius="@dimen/card_view_corner_radius"
             app:cardElevation="@dimen/card_view_elevation">
 
-            <!-- Layout for weather conditions -->
+            <!-- Layout for Temperature -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -35,37 +35,28 @@
                 android:padding="@dimen/card_view_content_padding">
 
                 <ImageView
-                    android:id="@+id/iv_main"
-                    android:layout_width="@dimen/identification_image_size"
-                    android:layout_height="@dimen/identification_image_size"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginEnd="@dimen/identification_image_marginEnd"
                     android:contentDescription="@string/image_contentDescription"
-                    app:srcCompat="@drawable/snowflake" />
+                    app:srcCompat="@drawable/temperature" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/card_view_height"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_main"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_temperature"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="end"
                         android:gravity="end"
                         android:textColor="@color/primary_text_color"
                         android:textSize="@dimen/label_text_size"
                         android:textStyle="bold"
-                        tools:text="Weather" />
+                        tools:text="Temperature" />
 
-                    <TextView
-                        android:id="@+id/tv_main_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:textColor="@color/secondary_text_color"
-                        android:textSize="@dimen/value_text_size"
-                        android:textStyle="bold"
-                        tools:text="condition" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -90,7 +81,6 @@
                 android:padding="@dimen/card_view_content_padding">
 
                 <ImageView
-                    android:id="@+id/iv_humidity"
                     android:layout_width="@dimen/identification_image_size"
                     android:layout_height="@dimen/identification_image_size"
                     android:layout_marginEnd="@dimen/identification_image_marginEnd"
@@ -99,7 +89,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/card_view_height"
                     android:orientation="vertical">
 
                     <TextView
@@ -112,18 +102,8 @@
                         android:textStyle="bold"
                         tools:text="Humidity" />
 
-                    <TextView
-                        android:id="@+id/tv_humidity_units"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:textColor="@color/secondary_text_color"
-                        android:textSize="@dimen/value_text_size"
-                        android:textStyle="bold"
-                        tools:text="percent" />
                 </LinearLayout>
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
@@ -145,7 +125,7 @@
             app:cardCornerRadius="@dimen/card_view_corner_radius"
             app:cardElevation="@dimen/card_view_elevation">
 
-            <!-- Layout for Temperature -->
+            <!-- Layout for weather conditions -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -154,29 +134,37 @@
                 android:padding="@dimen/card_view_content_padding">
 
                 <ImageView
-                    android:id="@+id/iv_min_max"
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
+                    android:id="@+id/iv_main"
+                    android:layout_width="@dimen/identification_image_size"
+                    android:layout_height="@dimen/identification_image_size"
                     android:layout_marginEnd="@dimen/identification_image_marginEnd"
                     android:contentDescription="@string/image_contentDescription"
-                    app:srcCompat="@drawable/temperature" />
+                    app:srcCompat="@drawable/snowflake" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/card_view_height"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_temperature"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_weather"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
                         android:gravity="end"
                         android:textColor="@color/primary_text_color"
                         android:textSize="@dimen/label_text_size"
                         android:textStyle="bold"
-                        tools:text="Temperature" />
+                        tools:text="Weather" />
 
+                    <TextView
+                        android:id="@+id/tv_weather_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:textColor="@color/primary_text_color"
+                        android:textSize="@dimen/value_text_size"
+                        android:textStyle="bold"
+                        tools:text="condition" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -201,7 +189,6 @@
                 android:padding="@dimen/card_view_content_padding">
 
                 <ImageView
-                    android:id="@+id/iv_wind"
                     android:layout_width="@dimen/identification_image_size"
                     android:layout_height="@dimen/identification_image_size"
                     android:layout_marginEnd="@dimen/identification_image_marginEnd"
@@ -210,11 +197,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/card_view_height"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_speed"
+                        android:id="@+id/tv_wind_speed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
@@ -223,14 +210,6 @@
                         android:textStyle="bold"
                         tools:text="Wind" />
 
-                    <TextView
-                        android:id="@+id/tv_speed_unit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:textStyle="bold"
-                        android:textColor="@color/secondary_text_color"
-                        android:textSize="@dimen/value_text_size" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -262,7 +241,6 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/iv_location"
                     android:layout_width="@dimen/identification_image_size"
                     android:layout_height="@dimen/identification_image_size"
                     android:layout_marginEnd="@dimen/identification_image_marginEnd"
@@ -289,12 +267,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:textColor="@color/secondary_text_color"
+                        android:textColor="@color/primary_text_color"
                         android:textSize="@dimen/value_text_size"
                         android:textStyle="bold"
                         tools:text="Country" />
                 </LinearLayout>
-
             </LinearLayout>
 
             <View
@@ -303,12 +280,14 @@
                 android:layout_margin="@dimen/divider_margin"
                 android:background="@color/divider_background" />
 
+            <!-- Layout for sunrise and sunset -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
+                <!-- Layout for sunrise -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -316,7 +295,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/iv_sunrise"
                         android:layout_width="@dimen/identification_image_size"
                         android:layout_height="@dimen/identification_image_size"
                         android:layout_marginEnd="@dimen/identification_image_marginEnd"
@@ -327,12 +305,13 @@
                         android:id="@+id/tv_sunrise_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/secondary_text_color"
+                        android:textColor="@color/primary_text_color"
                         android:textSize="@dimen/value_text_size"
                         android:textStyle="bold"
                         tools:text="Sunrise" />
                 </LinearLayout>
 
+                <!-- Layout for sunset -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -340,7 +319,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/iv_sunset"
                         android:layout_width="@dimen/identification_image_size"
                         android:layout_height="@dimen/identification_image_size"
                         android:layout_marginEnd="@dimen/identification_image_marginEnd"
@@ -351,7 +329,7 @@
                         android:id="@+id/tv_sunset_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/secondary_text_color"
+                        android:textColor="@color/primary_text_color"
                         android:textSize="@dimen/value_text_size"
                         android:textStyle="bold"
                         tools:text="Sunset" />

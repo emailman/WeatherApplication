@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                         if (report.isAnyPermissionPermanentlyDenied) {
                             Toast.makeText(
                                 this@MainActivity,
-                                "You have denied location permission. Please allow it is mandatory.",
+                                "You have denied location permission. It is mandatory.",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -232,13 +232,13 @@ class MainActivity : AppCompatActivity() {
             val countryCode = weatherList.sys.country
             val unitDegrees = getTemperatureUnit(countryCode)
 
-            binding?.tvMain?.text = weatherList.weather[i].main
-            binding?.tvMainDescription?.text = weatherList.weather[i].description
+            binding?.tvWeather?.text = weatherList.weather[i].main
+            binding?.tvWeatherDescription?.text = weatherList.weather[i].description
             binding?.tvTemperature?.text = String.format("Temperature  %.0f%s",
                 weatherList.main.temp, unitDegrees)
             binding?.tvSunriseTime?.text = unixTime(weatherList.sys.sunrise)
             binding?.tvSunsetTime?.text = unixTime(weatherList.sys.sunset)
-            binding?.tvSpeed?.text = String.format("Wind Speed  %.0f mph", weatherList.wind.speed)
+            binding?.tvWindSpeed?.text = String.format("Wind Speed  %.0f mph", weatherList.wind.speed)
             binding?.tvName?.text = weatherList.name
             binding?.tvCountry?.text = countryCode
             binding?.tvHumidity?.text = String.format("Humidity  %d%%", weatherList.main.humidity)
