@@ -135,7 +135,7 @@
 
                 <ImageView
                     android:id="@+id/iv_main"
-                    android:layout_width="@dimen/identification_image_size"
+                    android:layout_width="45dp"
                     android:layout_height="@dimen/identification_image_size"
                     android:layout_marginEnd="@dimen/identification_image_marginEnd"
                     android:contentDescription="@string/image_contentDescription"

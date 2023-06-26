@@ -234,14 +234,16 @@ class MainActivity : AppCompatActivity() {
 
             binding?.tvWeather?.text = weatherList.weather[i].main
             binding?.tvWeatherDescription?.text = weatherList.weather[i].description
-            binding?.tvTemperature?.text = String.format("Temperature  %.0f%s",
+            binding?.tvTemperature?.text = String.format("Temperature\n%.0f%s",
                 weatherList.main.temp, unitDegrees)
             binding?.tvSunriseTime?.text = unixTime(weatherList.sys.sunrise)
             binding?.tvSunsetTime?.text = unixTime(weatherList.sys.sunset)
-            binding?.tvWindSpeed?.text = String.format("Wind Speed  %.0f mph", weatherList.wind.speed)
+            binding?.tvWindSpeed?.text = String.format("Wind Speed\n%.0f mph",
+                weatherList.wind.speed)
             binding?.tvName?.text = weatherList.name
             binding?.tvCountry?.text = countryCode
-            binding?.tvHumidity?.text = String.format("Humidity  %d%%", weatherList.main.humidity)
+            binding?.tvHumidity?.text = String.format("Humidity\n%d%%",
+                weatherList.main.humidity)
 
             when (weatherList.weather[i].icon) {
                 "01d" -> binding?.ivMain?.setImageResource(R.drawable.sunny)
