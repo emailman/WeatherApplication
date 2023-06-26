@@ -242,8 +242,6 @@ class MainActivity : AppCompatActivity() {
             binding?.tvName?.text = weatherList.name
             binding?.tvCountry?.text = countryCode
             binding?.tvHumidity?.text = String.format("Humidity  %d%%", weatherList.main.humidity)
-            binding?.tvMaxMin?.text = String.format("Min: %.0f%s / Max: %.0f%s",
-                weatherList.main.temp_min, unitDegrees, weatherList.main.temp_max, unitDegrees)
 
             when (weatherList.weather[i].icon) {
                 "01d" -> binding?.ivMain?.setImageResource(R.drawable.sunny)
@@ -286,5 +284,10 @@ class MainActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat("h:mm a", Locale.US)
         sdf.timeZone = TimeZone.getDefault()
         return sdf.format(date)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

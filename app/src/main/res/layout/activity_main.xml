@@ -9,11 +9,13 @@
     android:padding="@dimen/main_screen_content_padding"
     tools:context=".MainActivity">
 
+    <!-- Row 1 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Left Card, Row 1 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -24,6 +26,7 @@
             app:cardCornerRadius="@dimen/card_view_corner_radius"
             app:cardElevation="@dimen/card_view_elevation">
 
+            <!-- Layout for weather conditions -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -41,7 +44,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -61,11 +64,13 @@
                         android:gravity="end"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size"
+                        android:textStyle="bold"
                         tools:text="condition" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- Right Card, Row 1 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -76,6 +81,7 @@
             app:cardCornerRadius="@dimen/card_view_corner_radius"
             app:cardElevation="@dimen/card_view_elevation">
 
+            <!-- Layout for Humidity -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -93,7 +99,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -113,6 +119,7 @@
                         android:gravity="end"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size"
+                        android:textStyle="bold"
                         tools:text="percent" />
                 </LinearLayout>
             </LinearLayout>
@@ -120,12 +127,14 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
+    <!-- Row 2 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/card_view_marginTop"
         android:orientation="horizontal">
 
+        <!-- Left Card, Row 2 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -136,6 +145,7 @@
             app:cardCornerRadius="@dimen/card_view_corner_radius"
             app:cardElevation="@dimen/card_view_elevation">
 
+            <!-- Layout for Temperature -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -145,15 +155,15 @@
 
                 <ImageView
                     android:id="@+id/iv_min_max"
-                    android:layout_width="@dimen/identification_image_size"
-                    android:layout_height="@dimen/identification_image_size"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginEnd="@dimen/identification_image_marginEnd"
                     android:contentDescription="@string/image_contentDescription"
                     app:srcCompat="@drawable/temperature" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -165,20 +175,13 @@
                         android:textColor="@color/primary_text_color"
                         android:textSize="@dimen/label_text_size"
                         android:textStyle="bold"
-                        tools:text="Current Temperature" />
+                        tools:text="Temperature" />
 
-                    <TextView
-                        android:id="@+id/tv_max_min"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:textColor="@color/secondary_text_color"
-                        android:textSize="@dimen/value_text_size"
-                        tools:text="Max/Min" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- Right Card, Row 2 -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -189,6 +192,7 @@
             app:cardCornerRadius="@dimen/card_view_corner_radius"
             app:cardElevation="@dimen/card_view_elevation">
 
+            <!-- Layout for Wind -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -206,7 +210,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -224,12 +228,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
+                        android:textStyle="bold"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
+
+    <!-- Row 3 Card View -->
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -241,6 +248,7 @@
         app:cardCornerRadius="@dimen/card_view_corner_radius"
         app:cardElevation="@dimen/card_view_elevation">
 
+        <!-- Layout for location and sunrise/sunset -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -283,6 +291,7 @@
                         android:gravity="end"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size"
+                        android:textStyle="bold"
                         tools:text="Country" />
                 </LinearLayout>
 
@@ -320,6 +329,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size"
+                        android:textStyle="bold"
                         tools:text="Sunrise" />
                 </LinearLayout>
 
@@ -343,6 +353,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/secondary_text_color"
                         android:textSize="@dimen/value_text_size"
+                        android:textStyle="bold"
                         tools:text="Sunset" />
                 </LinearLayout>
             </LinearLayout>
