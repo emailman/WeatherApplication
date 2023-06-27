@@ -36,7 +36,7 @@
 
                 <ImageView
                     android:layout_width="40dp"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:layout_marginEnd="@dimen/identification_image_marginEnd"
                     android:contentDescription="@string/image_contentDescription"
                     app:srcCompat="@drawable/temperature" />
